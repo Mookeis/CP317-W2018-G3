@@ -22,7 +22,7 @@ urlpatterns = [
     path('login/', user.login, name='login'),
     path('logout/', user.logout, name='logout'),
     path('signup/', user.signup, name='signup'),
-    url(r'^auth/', include('social_django.urls', namespace='social')),
+    # url(r'^auth/', include('social_django.urls', namespace='social')),
 
 
     # Account Paths

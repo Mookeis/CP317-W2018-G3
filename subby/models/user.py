@@ -18,6 +18,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default = True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now_add = True)
+    
+    username = models.CharField(max_length=20,blank=False,null=False)
 
     objects = UserManager()
 
@@ -51,3 +53,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 @receiver(pre_save, sender=User)
 def pre_save(sender, **kwargs):
     sender.updated_at = pytz.utc.localize(datetime.datetime.now())
+	

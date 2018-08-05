@@ -22,7 +22,7 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('subby.urls')),
-    url(r'^auth/', include('social_django.urls', namespace='social')),
+    # url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
