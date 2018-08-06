@@ -131,21 +131,25 @@ def signup(request):
             return render(request, 'application/base.html', {'signup_error': 'Bot verification failed'})
 
         # User has info and wants an account now!
-        if not request.POST['username']:
+        if not request.POST['email']:
             return render(request, 'application/base.html', {'signup_error': 'Please enter an email address'})
+        if not request.POST['username']:
+            return render(request, 'application/base.html', {'signup_error': 'Please enter a username'})
+        if len(User.objects.filter(username=request.POST['username'])) != 0:
+           return render(request, 'application/base.html', {'signup_error': 'Username has already been taken'})
         if request.POST['password'] == request.POST['password-confirm']:
             try:
-                user = User.objects.get(email=request.POST['username'])
-                return render(request, 'application/base.html', {'signup_error': 'Username has already been taken'})
+                user = User.objects.get(email=request.POST['email'])
+                return render(request, 'application/base.html', {'signup_error': 'Email has already been taken'})
             except User.DoesNotExist:
-                user = User.objects.create_user(request.POST['username'], password=request.POST['password'])
+                user = User.objects.create_user(request.POST['email'],password=request.POST['password'], username=request.POST['username'])
                 auth.login(request, user)
                 return redirect('subby:index')
         else:
             return render(request, 'application/base.html', {'signup_error': 'Passwords must match'})
     elif request.method == 'GET':
         p = request.GET.copy()
-        name = p['username']
+        name = p['email']
         if User.objects.filter(email=name):
             return HttpResponse(False)
         else:
@@ -157,7 +161,7 @@ def signup(request):
 # POST login
 def login(request):
     if request.method == 'POST':
-        user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
+        user = auth.authenticate(username=request.POST['email'], password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
             returned_render = redirect('subby:index')

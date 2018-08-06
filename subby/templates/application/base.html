@@ -181,7 +181,7 @@
                                             src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-email.svg">
                                     </div>
                                 </div>
-                                <input type="email" class="form-control" id="email-box" name="username"
+                                <input type="email" class="form-control" id="email-box" name="email"
                                        aria-describedby="emailHelp" placeholder="Enter email"
                                        tabindex="0" data-trigger="focus" data-toggle="popover"
                                        data-content="Please enter a valid email">
@@ -249,11 +249,25 @@
                                             src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-email.svg">
                                     </div>
                                 </div>
-                                <input type="email" class="form-control" id="su-email-box" name="username"
+                                <input type="email" class="form-control" id="su-email-box" name="email"
                                        aria-describedby="emailHelp" placeholder="Enter email"
                                        tabindex="0" data-trigger="focus" data-toggle="popover">
                             </div>
                             <small id="emailHelp" class="form-text text-muted">UW/WLU emails required</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="su-username-box">Username</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><img
+                                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-username.svg">
+                                    </div>
+                                </div>
+                                <input type="username" class="form-control" id="su-username-box" name="username"
+                                       aria-describedby="usernameHelp" placeholder="Enter username"
+                                       tabindex="0" data-trigger="focus" data-toggle="popover" data-content="Please Enter a valid Username">
+                            </div>
+                            <small id="usernameHelp" class="form-text text-muted">Username Required, within 20 characters</small>
                         </div>
                         <div class="form-group">
                             <label for="su-pw-box">Password</label>
@@ -385,8 +399,6 @@
 var ele = document.querySelectorAll('[role="alert"]');
 var message_ele = ele[0];
 
-console.log(message_ele);
-console.log(123);
 setTimeout(function(){ 
    message_ele.style.display = "none"; 
 }, 3000);

@@ -48,6 +48,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         app_label = 'subby'
         verbose_name = 'user'
         verbose_name_plural = 'users'
+		
+    def set_username(self, username):
+       self.username = username
+       return
 
 # Object Lifecycle Callbacks
 @receiver(pre_save, sender=User)
