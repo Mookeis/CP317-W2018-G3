@@ -399,9 +399,11 @@
 var ele = document.querySelectorAll('[role="alert"]');
 var message_ele = ele[0];
 
-setTimeout(function(){ 
-   message_ele.style.display = "none"; 
-}, 3000);
+if (message_ele) {
+	setTimeout(function(){ 
+	   message_ele.style.display = "none"; 
+	}, 3000);
+}
 
 </script>
 
