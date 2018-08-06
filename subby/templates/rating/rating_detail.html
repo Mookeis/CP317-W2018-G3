@@ -6,7 +6,7 @@
 <div class="container">
 	<div class="jumbotron jumbo-container" style="min-height: 90vh; max-height: 90vh; overflow-y: scroll;">
 		
-		<h2 class="hello" >Your review for {{ lister.email }} 
+		<h2 class="hello" >Your review for {{ lister.username }} 
 			<a class="btn btn-secondary float-right" href="{% url 'subby:RatingList' user_id=rating.reviewed_user_id %}">View All Reviews
 			</a>
 		</h2><br />
