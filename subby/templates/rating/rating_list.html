@@ -35,17 +35,22 @@
                     </div>
                 </div>
                 <div class="row">
+
+					
                     <div class="col">
+					
                         <div class="form-group">
+						<p class="mt-1 mb-0 ml-1"><b>Average: {{ avg_detail }}/5</b></p>
                             <fieldset class="rating float-left" disabled>
-                                <p class="mt-1 mb-0">Average:</p>
+                                
                                 {% if avg_rating == 5 %}
                                     <input type="radio" id="avg5s" value="5" checked/>
                                 {% else %}
                                     <input type="radio" id="avg5s" value="5"/>
                                 {% endif %}
-                                <label class="full" for="avg5s" data-toggle="popover"
-                                       data-content="{{ avg_rating }}" id="avg-rating"></label>
+                                <!-- <label class="full" for="avg5s" data-toggle="popover" -->
+                                       <!-- data-content="{{ avg_detail }}/5" id="avg-rating"></label> -->
+								<label class="full" for="avg5s" title="Perfect - 5.0"></label>
                                 {% if avg_rating == 4.5 %}
                                     <input type="radio" id="avg4p5s" value="4.5" checked/>
                                 {% else %}
@@ -114,7 +119,8 @@
                 </div>
 
                 {% for rating in ratings %}
-                    <div class="container bg-dark rounded text-light mt-1">
+				    
+                    <div class="container bg-dark rounded text-light mt-0">
                         <div class="row">
                             <div class="col mt-1">
                                 {% load index %}
@@ -406,6 +412,8 @@
                     </div>
 
                     <br>
+					{% empty %}
+					<h3>No review yet</h3>
                 {% endfor %}
     </div>
 
@@ -479,9 +487,9 @@
             }
         }
     </script>
-    <script>
-        $(function () {
-            $('#avg-rating').popover('show');
-        });
-    </script>
+<!-- <script> -->
+        <!-- $(function () { -->
+            <!-- $('#avg-rating').popover('show'); -->
+        <!-- }); -->
+    <!-- </script> -->
 {% endblock %}

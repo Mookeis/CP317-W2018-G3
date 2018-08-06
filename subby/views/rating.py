@@ -34,18 +34,21 @@ def list_user_rating(request, user_id):
             if rater == current:
                 posted = True
 
-    # avg = format(avg_rating, '.2f')
+    
     if total_count != 0:
         avg = total_rating / total_count
+        avg_detail = format(avg, '.2f')
         avg = round(avg * 2) / 2
     else:
         avg = 0
+        avg_detail = 0
     rating_dict = {
         'ratings': ratings,
         'raters': raters,
         'lister': lister,
         'current': current,
         'avg_rating': avg,
+        'avg_detail': avg_detail,
         'posted': posted,
         'current_id': current_id,
         'reviewed_user_id': reviewed_user_id

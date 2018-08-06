@@ -33,7 +33,7 @@
                                 <h5>Description</h5>
                                 <p>{{ sublet.summary }}</p>
 								<h5>Offered By</h5>
-								<p style="color:green;">{{ sublet.user.username }}</p>
+								<p style="color:green;"><a href="{% url 'subby:RatingList' user_id=sublet.user.id %}">{{ sublet.user.username }}</a></p>
                             </div>
 							
                         </div>

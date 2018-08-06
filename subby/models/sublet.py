@@ -98,5 +98,8 @@ class Sublet(models.Model):
 		self.updated_at = pytz.utc.localize(datetime.datetime.now())
 		return
 
+		
+	def pub_date_pretty(self):
+		return self.created_at.strftime('%b %e, %Y')
 
 

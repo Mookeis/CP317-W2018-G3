@@ -39,13 +39,15 @@
 					</div>
                     <br><br>
 					{% for p in place %}
-					<div class="card gallery" style="width: 15rem;cursor:pointer;"   id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
+					<div class="card gallery" style="width: 16rem;cursor:pointer;" id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
 						{% load index %}
 						<img class="card-img-top" src="{{ cover|index:forloop.counter0 }}" alt="">
 						<div class="card-body" >
 							<h6 class="card-title">{{ p.title }}, For {{ p.duration }} months</h6>
 							<p class="card-title">{{ p.street_address }} </p>
 							<h6 class="card-title">{{ p.city }}, ${{ p.price}}</h6>
+							<h6 class="card-title">Created at: {{ p.pub_date_pretty }}</h6>
+							<br />
 						</div>
 					</div>
 					{% endfor %}
