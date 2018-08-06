@@ -7,9 +7,6 @@ from subby.models.favourite import Favourite
 from subby.models.sublet import Sublet
 from subby.models.image import SubletImage
 from subby.decorators.loginrequiredmessage import message_login_required
-from django.http import JsonResponse
-import sys
-
 
 
 	
@@ -33,13 +30,20 @@ def FavouriteLister(request, user_id):
 
 
 
-def favourite_bar_lister(request):
-    print("Its lit", file=sys.stderr)
+@message_login_required
+def favourite_bar_lister(request)
     fav_list = Favourite.objects.filter(user=request.user)
 
-    data = { 'fav_list': fav_list, }
+    image_list = []
+    for fav in fav_list:
+        images = SubletImage.objects.filter(sublet=fav.sublet)
+        image_list.append(images[0])
 
-    return JsonResponse(data)
+    data = { 'fav_list': fav_list,
+             'image_list': image_list,
+             }
+
+    return render(request, 'favourite/favourite_nav.html', data)
 
 
 
