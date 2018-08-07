@@ -247,9 +247,9 @@
 						<input type="hidden" name="subletid" value="{{ object.id }}">
 						<input type="hidden" name="next" value="{{ request.path }}">
 						{% if fav == True %}
-						<button class="btn btn-danger" type="submit">Liked</button>
+						<button class="btn btn-danger" type="submit">Unfavorite</button>
 						{% else %}
-						<button class="btn btn-secondary" type="submit">Like It</button>
+						<button class="btn btn-secondary" type="submit">Favorite</button>
 						{% endif %}
 					</form>
 					
