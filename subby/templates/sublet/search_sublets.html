@@ -15,7 +15,7 @@
 					aria-label="Toggle navigation">
                         Advanced filters
 					</button>
-
+					
                     <div class="collapse" id="filterToggler">
                         <div class="bg-dark p-4 mt-2" style="border-radius: 5px;">
                             <h6 class="text-white">Advanced Filters</h6>
@@ -31,91 +31,92 @@
                                     <input class="form-control" name="duration" id="duration" type="number" min="1" max="12"
 									value="{{ duration }}">
 									<label for="price">price (<=):</label>
-                                    <input class="form-control" name="price" id="price" type="number" value="{{ price }}">
-                                    <button class="btn btn-secondary btn-sm mt-3" type="submit">Filter</button>
+										<input class="form-control" name="price" id="price" type="number" value="{{ price }}">
+										<button class="btn btn-secondary btn-sm mt-3" type="submit">Filter</button>
+									</div>
+									</form>
 								</div>
-							</form>
-						</div>
-					</div>
-                    <br><br>
-					{% for p in place %}
-					<div class="card gallery" style="width: 12rem;cursor:pointer;" id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
-						{% load index %}
-						<img class="card-img-top" src="{{ cover|index:forloop.counter0 }}" alt="">
-						<div class="card-body" >
-							<h6 class="card-title">{{ p.title }}, For {{ p.duration }} months</h6>
-							<p class="card-title">{{ p.street_address }} </p>
-							<h6 class="card-title">{{ p.city }}, ${{ p.price}}</h6>
-							<h6 class="card-title">Created at: {{ p.pub_date_pretty }}</h6>
-							<br />
-						</div>
+							</div>
+							<br><br>
+							{% for p in place %}
+							<div class="card gallery" style="width: 12rem;cursor:pointer;" id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
+								<!-- {% load index %} -->
+								<img class="card-img-top" src="{{ cover|index:forloop.counter0 }}" alt="">
+								<div class="card-body" >
+									<h6 class="card-title">{{ p.title }}, For {{ p.duration }} months</h6>
+									<p class="card-title">{{ p.street_address }} </p>
+									<h6 class="card-title">{{ p.city }}, ${{ p.price}}</h6>
+									<h6 class="card-title">Created at: {{ p.pub_date_pretty }}</h6>
+									<br />
+								</div>
+								
+							</div>
 
+							{% endfor %}
+						</div>
 					</div>
-					{% endfor %}
+					<div class="col-5">
+						<div id="map" style="min-height: 100%; height: auto;"></div>
+					</div>
 				</div>
 			</div>
-			<div class="col-5">
-				<div id="map" style="min-height: 100%; height: auto;"></div>
-			</div>
 		</div>
-	</div>
-</div>
-{% endblock %}
-
-{% block js %}
-<script>
-	function init_searchmap() {
+		{% endblock %}
 		
-		let myOptions = {
-			center: new google.maps.LatLng({{ lat }}, {{ lng }}),
-			zoom: 13,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+		{% block js %}
+		<script>
+			function init_searchmap() {
+				
+				let myOptions = {
+					center: new google.maps.LatLng({{ lat }}, {{ lng }}),
+					zoom: 13,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+					
+				};
+				let map = new google.maps.Map(document.getElementById("map"),
+				myOptions);
+				let bounds = new google.maps.LatLngBounds();
+				setMarkers(map, bounds)
+				
+			}
 			
-		};
-		let map = new google.maps.Map(document.getElementById("map"),
-		myOptions);
-		let bounds = new google.maps.LatLngBounds();
-		setMarkers(map, bounds)
-		
-	}
-	
-	
-	function setMarkers(map, bounds) {
-		
-		{%  for p in place %}
-		latlngset = new google.maps.LatLng({{ p.latitude }}, {{ p.longitude }});
-		marker = new google.maps.Marker({
-			map: map, title: '{{ p.title }}', position: latlngset
-		});
-		map.setCenter(marker.getPosition());
-		
-		content = "Listing Name: <a href='{% url 'subby:SubletDetail' p.id %}'>{{ p.title }}</a>" + '<br>' + "Address: {{ p.street_address }}" + '<br>' + " City: {{ p.city }}" + '<br>' +
-		'Price: ${{ p.price }}/mo';
-		
-		infowindow = new google.maps.InfoWindow();
-		
-		google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
-			return function () {
-				var sublet = document.getElementById('sublet{{ p.id }}');
-				{% for p in place %}
-				document.getElementById('sublet{{p.id}}').style.backgroundColor = 'white';
+			
+			function setMarkers(map, bounds) {
+				
+				{%  for p in place %}
+				latlngset = new google.maps.LatLng({{ p.latitude }}, {{ p.longitude }});
+				marker = new google.maps.Marker({
+					map: map, title: '{{ p.title }}', position: latlngset
+				});
+				map.setCenter(marker.getPosition());
+				
+				content = "Listing Name: <a href='{% url 'subby:SubletDetail' p.id %}'>{{ p.title }}</a>" + '<br>' + "Address: {{ p.street_address }}" + '<br>' + " City: {{ p.city }}" + '<br>' +
+				'Price: ${{ p.price }}/mo';
+				
+				infowindow = new google.maps.InfoWindow();
+				
+				google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+					return function () {
+						var sublet = document.getElementById('sublet{{ p.id }}');
+						{% for p in place %}
+						document.getElementById('sublet{{p.id}}').style.backgroundColor = 'white';
+						{% endfor %}
+						sublet.style.backgroundColor = 'lightblue';
+						window.location.href="#sublet{{ p.id }}";
+						infowindow.setContent(content);
+						infowindow.open(map, marker);
+						
+					};
+				})(marker, content, infowindow));
+				
+				bounds.extend(marker.getPosition());
+				
+				map.fitBounds(bounds);
 				{% endfor %}
-				sublet.style.backgroundColor = 'lightblue';
-				window.location.href="#sublet{{ p.id }}";
-				infowindow.setContent(content);
-				infowindow.open(map, marker);
-
-			};
-		})(marker, content, infowindow));
+				
+			}
+		</script>
 		
-		bounds.extend(marker.getPosition());
-		
-		map.fitBounds(bounds);
-		{% endfor %}
-		
-	}
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWKqqOWg7D2pCCKgsGe_ISDMUyEkkxXzY&libraries=places&callback=init_searchmap"
-async defer></script>
-{% endblock %}
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWKqqOWg7D2pCCKgsGe_ISDMUyEkkxXzY&libraries=places&callback=init_searchmap"
+		async defer></script>
+	{% endblock %}	
