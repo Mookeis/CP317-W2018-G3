@@ -146,6 +146,9 @@
     {% endblock %}
 </div>
 
+
+
+
 <!-- Modals -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-label"
      aria-hidden="true">
@@ -317,6 +320,10 @@
     {% endblock %}
 </div>
 
+<br /><br /><br />
+<!-- <hr> -->
+
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -341,6 +348,8 @@
 <script src="{% static 'js/MapAPI.js' %}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWKqqOWg7D2pCCKgsGe_ISDMUyEkkxXzY&libraries=places&callback=init_searchbar"
         async defer></script>
+
+
 
 <script type="text/javascript">
     $(function () {
@@ -412,5 +421,13 @@ if (message_ele) {
 {% endblock %}
 
 </body>
+
+<footer>
+	<br /><br /><br />
+	<hr class="mb-1">
+	<div class="container-fluid">
+		<p class="copy_right"> ©Subby. All rights reserved</p>
+	</div>
+</footer>
 
 </html>

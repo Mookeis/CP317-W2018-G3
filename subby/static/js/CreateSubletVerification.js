@@ -16,6 +16,7 @@ $(function () {
         price.popover('hide');
         description.popover('hide');
         duration.popover('hide');
+		
         images.popover('hide');
         $('#pac-input').popover('hide');
 
@@ -31,6 +32,12 @@ $(function () {
             $('#pac-input').popover('show');
             error = true;
         }
+		// alert(city.val());
+		if (city.val() != 'Waterloo' && city.val() != 'Kitchener' && city.val() != 'waterloo' && city.val() != 'kitchener') {
+			city.popover('show');
+			error = true;
+		}
+		
         if (!price.val()) {
             price.popover('show');
             error = true;

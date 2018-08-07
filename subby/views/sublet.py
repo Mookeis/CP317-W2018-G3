@@ -76,7 +76,7 @@ def search(request):
                 data.update(place=places)
                 data['duration'] = request.POST.get('duration')
             if request.POST.get('price'):
-                places = places.filter(price__lt=float(request.POST.get('price')))
+                places = places.filter(price__lte=float(request.POST.get('price')))
                 data.update(place=places)
                 data['price'] = request.POST.get('price')
             images = []

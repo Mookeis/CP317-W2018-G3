@@ -30,7 +30,7 @@
                                     <label for="duration">Duration (months):</label>
                                     <input class="form-control" name="duration" id="duration" type="number" min="1" max="12"
 									value="{{ duration }}">
-									<label for="price">price (<):</label>
+									<label for="price">price (<=):</label>
                                     <input class="form-control" name="price" id="price" type="number" value="{{ price }}">
                                     <button class="btn btn-secondary btn-sm mt-3" type="submit">Filter</button>
 								</div>
@@ -39,7 +39,7 @@
 					</div>
                     <br><br>
 					{% for p in place %}
-					<div class="card gallery" style="width: 16rem;cursor:pointer;" id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
+					<div class="card gallery" style="width: 12rem;cursor:pointer;" id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
 						{% load index %}
 						<img class="card-img-top" src="{{ cover|index:forloop.counter0 }}" alt="">
 						<div class="card-body" >
@@ -49,11 +49,12 @@
 							<h6 class="card-title">Created at: {{ p.pub_date_pretty }}</h6>
 							<br />
 						</div>
+
 					</div>
 					{% endfor %}
 				</div>
 			</div>
-			<div class="col-4">
+			<div class="col-5">
 				<div id="map" style="min-height: 100%; height: auto;"></div>
 			</div>
 		</div>
@@ -67,7 +68,7 @@
 		
 		let myOptions = {
 			center: new google.maps.LatLng({{ lat }}, {{ lng }}),
-			zoom: 17,
+			zoom: 13,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 			
 		};

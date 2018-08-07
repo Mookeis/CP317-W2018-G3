@@ -172,8 +172,8 @@ html, body {
 
 .card-body {
     min-height: 150px;
-    max-height: 150px;
-    height: auto;
+    max-height: 170px;
+    /* height: auto; */
     overflow-y: auto;
 }
 
@@ -380,4 +380,17 @@ html, body {
 }
 
 /* -------------------------------------------- */
+
+
+
+
+.copy_right {
+	text-align:center;
+	font-weight: bold;
+}
+
+
+
+
+
 
