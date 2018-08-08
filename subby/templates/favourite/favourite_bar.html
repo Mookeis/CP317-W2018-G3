@@ -1,0 +1,66 @@
+
+{% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/favourites/favourite_bar.css' %}"/>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+
+{% csrf_token %}
+<!-- Favourite Menu Open Button-->
+<button class="btn btn-secondary btn-sm favourite-button-bar" id="favourite-menu-button"  url-data='{% url "subby:favourite_bar_lister" %}' onclick="open_fav_menu()">Favourites</button>
+
+
+
+<!-- Favourite Menu -->
+<div class="fav-nav" id= "favNav">
+
+    {% include "favourite/favourite_nav.html" %}
+
+</div>
+
+
+
+{% block javascript %}
+
+{% csrf_token %}
+<script>
+$(document).ready(function(){
+    $("#favourite-menu-button").on("click",function(){
+        getFavourites();
+    });
+
+});
+</script>
+
+
+{% csrf_token %}
+<script>
+function getFavourites(){
+    var url_text =  $("#favourite-menu-button").attr("url-data");
+
+      $.ajax({
+
+        url: url_text,
+        type: 'GET',
+
+        data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+
+        success: function(data) {
+            $("#favNav").html(data);
+        },
+        error: function(){
+            window.alert("Whoops, getting favourites failed!");
+        }
+
+      });
+
+}
+</script>
+
+
+{% endblock %}
+
+{% load static %}
+    <script src="{% static 'js/FavouriteBar.js' %}"></script>
