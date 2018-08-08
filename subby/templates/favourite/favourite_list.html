@@ -39,7 +39,12 @@
 					<div class="col-md-1 mt-1">
 						<a href="{% url 'subby:unfav_sublet' fav_id=fav.id %}" class="btn btn-danger">Unfavorite</a>
 					</div>
-					
+			<form action="{% url 'subby:fav_unfav_sublet' %}" method="POST">
+                		{% csrf_token %}
+                		<input type="hidden" name="subletid" value="{{ fav.sublet.get_sublet_id }}">
+                		<input type="hidden" name="next" value="{{ request.path }}">
+                		<button class="close" type="submit">&times;</button>
+            		</form>
 				</div>
 				<hr>
 			</div>
