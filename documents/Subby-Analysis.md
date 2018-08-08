@@ -29,10 +29,10 @@ Version 1.2 - 06/27/18
 
 Improving the current state of subletting would be beneficial to students throughout our target market (KW Region), as we will be able to consolidate listings posted on non-specialized platforms, as well as provide quality assurance on the posted listings. The database of sublet listings will be organized based on standard filters for renting such as location, rating, etc.
 
-The website will display the listing information found in the database in the form of text, diagrams, or maps. The website will allow administrators to insert, edit, and remove entries from the database/website at their discretion. A website user would be allowed access to the data on the front-end and browse through the listings on the site, as well as post new listings. 
+The website will display the listing information found in the database in the form of text, diagrams, or maps. The website will allow administrators to insert, edit, and remove entries from the database/website at their discretion. The general users would be allowed access to the data on the front-end and browse through the listings on the website, as well as posting new listings.
 
 ## 1.1. Purpose
-The current state of subletting is disorganized and inconvenient to use, with the most popular platform being FaceBook--a site not even designed for posting sublets. Subby will allow for listings on FaceBook, Reddit, and other sites to be consolidated, thus providing  a more comprehensive product than what is currently available to the student sublettng market. 
+The current state of subletting is disorganized and inconvenient to use, with the most popular platform being FaceBook--a site not even designed for process of subletting. Subby will allow for listings on FaceBook, Reddit, and other sites to be consolidated, thus providing  a more comprehensive product than what is currently available to the student sublettng market.
 
 The idea is to provide:
 1. **Subletters:**
@@ -40,7 +40,7 @@ The idea is to provide:
     * Ability to contact sublessors through site or through provided contact information
     * Security in browsing since all listings will go through a verification process to confirm legitimacy in ownership/ability to lease
 2. **Sublessors:**
-    * Ability to post new sublet listings according to site policy
+    * Ability to post new sublet listings that complies with site policy
     * Ability to modify existing listings in case any information changes
     * Allows for listings to be seen by and be contacted by verified users
     * Provide an interface to let one know the current competitive pricing in the property area
@@ -199,7 +199,7 @@ A sample task list for the user:
 The user opens a web browser and navigates to the Subby management tool login page. The user enters valid admin credentials and logs in by selecting the "Login" button.
 
 **Task 2: Creating a user. (Prerequisites: Task 1 as Administrator)**
-An administrator selects the "Create User" which generates a overlayed display that prompts them to fill in the following fields:
+An administrator selects the "Create User" which generates an overlayed display that prompts them to fill in the following fields:
 * Username
 * Password
 * E-mail Address
