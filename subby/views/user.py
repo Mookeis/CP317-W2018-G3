@@ -120,6 +120,7 @@ def contact_user(request):
 def signup(request):
     if request.method == 'POST':
         recaptcha_response = request.POST.get('recaptcha-token')
+
         data = {
             'secret': '6Ledc2YUAAAAAFYJYWjB2a8HZWXmtm4iFKyOJeio',
             'response': recaptcha_response
@@ -127,8 +128,14 @@ def signup(request):
         r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
         result = r.json()
 
-        if result['score'] < 0.4:
-            return render(request, 'application/base.html', {'signup_error': 'Bot verification failed'})
+        try:
+            if result['score'] < 0.4:
+                return render(request, 'application/base.html', {'signup_error': 'Bot verification failed'})
+        except KeyError:
+            # TODO - if we are unable to verify due to an issue with the recaptcha service, we should
+            # mark the user as having not passed the captcha and process it again at a later date,
+            # setting the user account to invalid if required.
+            pass
 
         # User has info and wants an account now!
         if not request.POST['email']:
