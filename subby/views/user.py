@@ -148,9 +148,8 @@ def signup(request):
         else:
             return render(request, 'application/base.html', {'signup_error': 'Passwords must match'})
     elif request.method == 'GET':
-        p = request.GET.copy()
-        name = p['email']
-        if User.objects.filter(email=name):
+        email = request.GET.get('email', None)
+        if User.objects.filter(email=email):
             return HttpResponse(False)
         else:
             return HttpResponse(True)
@@ -161,7 +160,7 @@ def signup(request):
 # POST login
 def login(request):
     if request.method == 'POST':
-        user = auth.authenticate(username=request.POST['email'], password=request.POST['password'])
+        user = auth.authenticate(email=request.POST['email'], password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
             returned_render = redirect('subby:index')

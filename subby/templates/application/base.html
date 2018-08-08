@@ -29,9 +29,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-	
-	
-	
+
+
+
     {% if request.get_full_path == "/sublets/search" %}
         <div class="nav-item col-md-6">
             <form action="{% url 'subby:search' %}" method="POST">
@@ -380,9 +380,8 @@
     }
 
     function checkLoginEmail() {
-        $.get('{% url 'subby:signup' %}', {username: $('#email-box').val()},
+        $.get('{% url 'subby:signup' %}', {email: $('#email-box').val()},
             function (data) {
-                console.log('hi');
                 if (data === "True") {
                     $('#email-box').removeClass('green-border');
                 } else {
@@ -409,8 +408,8 @@ var ele = document.querySelectorAll('[role="alert"]');
 var message_ele = ele[0];
 
 if (message_ele) {
-	setTimeout(function(){ 
-	   message_ele.style.display = "none"; 
+	setTimeout(function(){
+	   message_ele.style.display = "none";
 	}, 3000);
 }
 
