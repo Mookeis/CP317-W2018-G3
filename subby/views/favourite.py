@@ -31,7 +31,7 @@ def FavouriteLister(request, user_id):
 
 
 @message_login_required
-def favourite_bar_lister(request)
+def favourite_bar_lister(request):
     fav_list = Favourite.objects.filter(user=request.user)
 
     image_list = []
