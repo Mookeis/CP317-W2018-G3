@@ -51,6 +51,8 @@ urlpatterns = [
     path('favourites/', favourite.FavouriteLister, name='favourite_list'),
     path('favourites/fav_unfav_sublet/', favourite.fav_unfav_sublet, name='fav_unfav_sublet'),
     path('favourites/unfav_sublet/<int:fav_id>', favourite.unfav_sublet, name='unfav_sublet'),
+    path('favourites/favourite_bar_lister', favourite.favourite_bar_lister, name='favourite_bar_lister'),
+
 
     # Report paths
     path('report/<int:user_id>/<int:sublet_id>/', report.create_report, name='create_report'),
