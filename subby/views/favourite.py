@@ -1,8 +1,4 @@
-from django.http import Http404
-
-from django.http import HttpResponse, Http404 
 from django.shortcuts import render, get_object_or_404,redirect
-from django.db import models
 from subby.models.favourite import Favourite
 from subby.models.sublet import Sublet
 from subby.models.image import SubletImage
@@ -31,7 +27,7 @@ def FavouriteLister(request, user_id):
 
 
 @message_login_required
-def favourite_bar_lister(request)
+def favourite_bar_lister(request):
     fav_list = Favourite.objects.filter(user=request.user)
 
     image_list = []
@@ -46,8 +42,6 @@ def favourite_bar_lister(request)
     return render(request, 'favourite/favourite_nav.html', data)
 
 
-
-# Favourites a sublet if not favourited, unfavourites a sublet if already favourited (deletes it from db)
 def fav_unfav_sublet(request):
 
     current_user = request.user
@@ -56,10 +50,8 @@ def fav_unfav_sublet(request):
     try:
         sublet = get_object_or_404(Sublet, id=request.POST['subletid'])
     except(KeyError, Sublet.DoesNotExist):
-        #return redirect('subby:SubletDetail', {'sublet': sublet, 'error': "Sublet does not exist."})
         return redirect(next, id=sublet.get_sublet_id())
     else:
-        #If it exists check to see if this favourite already exists
         if(Favourite.objects.filter(user=current_user, sublet=sublet).count() > 0): #Remove favourite
             Favourite.objects.remove_favourite(sublet, current_user)
         else: #Add favourite
