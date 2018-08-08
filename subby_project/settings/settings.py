@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,9 +50,9 @@ AUTHENTICATION_BACKENDS = (
     # 'social_core.backends.google.GoogleOAuth2',  # for Google authentication
     # 'social_core.backends.github.GithubOAuth2',  # for Github authentication
     # 'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
-	
+
     #{% url 'social:begin' 'google-oauth2' %}
-	
+
     'django.contrib.auth.backends.ModelBackend',
 )
 
