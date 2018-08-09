@@ -43,18 +43,18 @@
 8. **[Revision History](#8revisionhistory)**  
 
 # 1. Introduction
-In the Design Phase we consider the behaviour of the system and detail its design.
+In the Design Phase, we consider the behaviour of the system and detail its design.
 Here, the software architecture is established, providing the framework of the various subsystems and the interaction between them. Building on the Analysis Phase, the Architecture Design introduces the corresponding interfaces of the predefined modules outlined in the previous phases. Additionally, this phase incorporates the Detailed Design which outlays the algorithms and data structures responsible for the operation of the product modules.
 
 ## 1.1. Purpose
-The Design Phase seeks to capture and document the specific data structures and workflows of the system in order to provide a detailed description of the project's design and automation. Once completed, the development team may proceed with a reliable forecast of the project's time line and design for the Implementation Phase.
+The Design Phase seeks to capture and document the specific data structures and workflows of the system in order to provide a detailed description of the project's design and automation. Once completed, the development team may proceed with a reliable forecast of the project's timeline and design for the Implementation Phase.
 
 
 ## 1.2. Intended Audience
 The intended audience for Subby includes students in the Waterloo region who are either looking to sublet a place or are looking to rent their place out for a specified amount of time.
 
 ## 1.3. Product Scope
-The scope of Subby is driven by the need for a "one-stop shop" for Waterloo sublets. This will be done by creating, advertising and maintaining a sing website dedicated for finding and selling sublets. Achieving this will simplify an individual's search to find a place for the school year while also aiding in an individual's search for a renter. The finished product will be simple to use and easy to navigate through its various filters.
+The scope of Subby is driven by the need for a "one-stop shop" for Waterloo sublets. This will be done by creating, advertising and maintaining a single website dedicated for finding and selling sublets. Achieving this will simplify an individual's search to find a place for the school year while also aiding in an individual's search for a renter. The finished product will be simple to use and easy to navigate through its various filters.
 
 ## 1.4. Referencing Documents
 * [Requirements Documentation for Subby](https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Subby-Requirements.md.html)
@@ -66,12 +66,12 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
   * Browsing is not limited to registered users and listings are accessible to public users.
   * Users can browse listings using a list, or by manipulating an interactive map.
 * Search functions enable public and registered users to specify postings by location or address.
-  * Filters can be applied by users to refine searches using criteria such as, price range, size, number of rooms available, and duration of stay.
+  * Filters can be applied by users to refine searches using criteria such as price range, size, number of rooms available, and duration of stay.
   * Users can sort search results using price, date, and ratings.
 
 ## 2.2. Create Sublet Listings
 * Registered users can create sublet listings.
-  * Users can add details, such as the location and a description, of the listing and choose to upload photos as well.
+  * Users can add details, such as the location and a description of the listing and choose to upload photos as well.
   * Users can also add filters to their listing, enabling their listing to be included in more refined searches.
 
 ## 2.3. Contact Sublet Owners
@@ -91,7 +91,7 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
 
 ## 2.6. Edit/Delete Posted Sublet Listings
 * Users are able to modify any sublet listings that they post.
-  * Users are able to change any details, filter options or photos they included in their listing.
+  * Users are able to change any details, filter options or photos they include in their listing.
   * Users are also able to delete their listings at any time they desire.
 
 ## 2.7. Submit Reports
@@ -111,7 +111,6 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
 * Users are able to view available sublets on a map
 * Users can post their rooms for rent in addition to posting "wanted" ads
 * Users can rate other users based on their experiences
-* Users are able to place a bid on properties they are interested in
 
 ## 3.3. General Constraints
 * Google Maps API Budget
@@ -142,7 +141,7 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
   * Code should be [DRY](https://www.artima.com/intv/dry.html); functionality should be abstracted, rather than repeated, to avoid issues in maintenance.
 * Methods that perform non-trivial operations should have a short comment with a description of their side-effects.
 * Blocks within methods that are complex should have a short comment explaining their purpose.
-* Frontend HTML and CSS must be in compliance with the established [W3C standards](https://www.w3.org/standards/).
+* Front-end HTML and CSS must be in compliance with the established [W3C standards](https://www.w3.org/standards/).
 * Browser Compatibility.
   * Bootstrap front-end framework will be used to ease cross-browser compatibility
   * A CSS reset stylesheet will be used to ensure behavior consistency between browsers
@@ -161,7 +160,7 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
       * 500: Internal Server Error
       * 502: Bad Gateway
       * 503: Service Unavailable
-    * Resulting error pages will be customized to display a description of the error in layman’s terms and should be formatted consistent       with Subby’s website branding.
+    * Resulting error pages will be customized to display a description of the error in layman’s terms and should be formatted consistent with Subby’s website branding.
   * Exception Handling.
     * Every client request will be wrapped in try-except handlers to catch and report any unhandled error.
     * Any code that is likely to raise a common Python or Django exception, such as IOError or ImportError will be wrapped in try-   exception handlers.
@@ -176,10 +175,9 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
       * By default, a User’s username, published listings and pictures and profile description will be shared with all Users and
 	Visitors.
 * User Authentication.
-  * Subby will use single sign-on to authenticate Users;
+  * Subby will use a single sign-on approach to authenticate Users;
   * Usernames must be unique and can contain letters (A-Z), numbers (0-9), dashes (-), underscores (_), and periods (.);
   * Passwords can contain any combination of printable ASCII characters and must contain a minimum of 8 characters comprised of at least       one number and one special character  (e.g. !, @, #, $, etc.).
-
    * Passwords will be automatically salted to further safeguard passwords before they are stored in the database.
 * User Access and Permissions.
    * Based on the functional requirements of Users and on security considerations, Subby will offer three permission levels:
