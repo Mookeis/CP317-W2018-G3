@@ -26,8 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myApp'
-    'tinymce'
+    'myApp',
+    'tinymce',
+    'djcelery',
     # 'social_django',
 ]
 
