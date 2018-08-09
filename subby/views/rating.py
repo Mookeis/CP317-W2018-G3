@@ -21,7 +21,8 @@ def list_user_rating(request, user_id):
     print(total_count)
     for rating in ratings:
         rater = User.objects.get(id=rating.user_id)
-        raters.append(rater.email)
+        raters.append(rater.username)
+
         total_rating += rating.rating
 
     if request.user.is_anonymous:
@@ -31,7 +32,7 @@ def list_user_rating(request, user_id):
         current = request.user.email
         current_id = request.user.id
         for rater in raters:
-            if rater == current:
+            if rater == request.user.username:
                 posted = True
 
     
