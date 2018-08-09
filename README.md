@@ -1,8 +1,17 @@
 # CP317-W2018-G3
 
-### Requirements Document
+### Documents
 * Located at `documents/Subby-Requirements.md`
-* Viewable at: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Subby-Requirements.md.html
+* Viewable at the following addresses:
+  * Requirements: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Subby-Requirements.md.html
+  * Requirements SQA: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/SQA-Requirements.html
+  * Analysis: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Subby-Analysis.md.html
+  * Analysis SQA: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/SQA-Analysis.html
+  * Design: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Subby-Design.md.html
+  * Analysis SQA: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/SQA-Design.html
+  * Github IDs: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Github-IDs.html
+  * Subgroup Assignments: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Subgroup-Assignments.html
+    * _Notes in documentation are more accurate_
 
 ### Developer Notes
 #### Running Subby (Development)
@@ -15,6 +24,9 @@
   * Check migrations with `python manage.py makemigrations --settings=subby_project.settings.development` first.
   * Ensure that migrations have been performed; run `python manage.py migrate --settings=subby_project.settings.development`.
   * From the project directory, run `python manage.py runserver --settings=subby_project.settings.development`. Subby will be running at `http://127.0.0.1:8000`. `localhost:8000` will be rejected by recaptcha.
+
+#### Production
+  * The project will be running at https://cp317-w2018-g3.herokuapp.com/ for a period of time after the submission date. Note that latent errors still listed in the SQA documentation, such as image uploading, will still be present.
  
 #### Testing
   * Run tests (without coverage): `python run manage.py test --settings=subby_project.settings.development`
