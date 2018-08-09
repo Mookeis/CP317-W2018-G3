@@ -2,65 +2,79 @@
 
 {% block content %}
 <div class="jumbotron jumbo-container">
-	<div class="container-fluid search-sublet-main-container">
-		<div class="row">
-			<div class="col-7">
-				
-				<div class="container-fluid search-container">
-					<h2>
-                        Search Results: {{ place.count }} results found
-					</h2>
-                    <button type="button" data-toggle="collapse" data-target="#filterToggler"
-					class="btn btn-secondary btn-sm" aria-controls="filterToggler" aria-expanded="false"
-					aria-label="Toggle navigation">
-                        Advanced filters
-					</button>
-					
-                    <div class="collapse" id="filterToggler">
-                        <div class="bg-dark p-4 mt-2" style="border-radius: 5px;">
-                            <h6 class="text-white">Advanced Filters</h6>
-                            <form action="{% url 'subby:search' %}" method="POST">
-                                {% csrf_token %}
-                                <div class="form-group text-light">
-                                    <input type="hidden" name="lat" value="{{ lat }}">
-                                    <input type="hidden" name="lng" value="{{ lng }}">
-                                    <label for="prox">Proximity within(km):</label>
-                                    <input class="form-control" name="proximity" id="prox" type="number" min="1"
-									value="{{ prox }}">
-                                    <label for="duration">Duration (months):</label>
-                                    <input class="form-control" name="duration" id="duration" type="number" min="1" max="12"
-									value="{{ duration }}">
-									<label for="price">price (<=):</label>
-										<input class="form-control" name="price" id="price" type="number" value="{{ price }}">
-										<button class="btn btn-secondary btn-sm mt-3" type="submit">Filter</button>
-									</div>
-									</form>
-								</div>
+	<!-- <div class="container-fluid search-sublet-main-container"> -->
+	<div class="row">
+		<div class="col-7">
+			
+			<!-- <div class="container-fluid search-container"> -->
+			<h2>
+				Search Results: {{ place.count }} results found
+			</h2>
+			<button type="button" data-toggle="collapse" data-target="#filterToggler"
+			class="btn btn-secondary btn-sm" aria-controls="filterToggler" aria-expanded="false"
+			aria-label="Toggle navigation">
+				Advanced filters
+			</button>
+			
+			<div class="collapse" id="filterToggler">
+				<div class="bg-dark p-4 mt-2" style="border-radius: 5px;">
+					<h6 class="text-white">Advanced Filters</h6>
+					<form action="{% url 'subby:search' %}" method="POST">
+						{% csrf_token %}
+						<div class="form-group text-light">
+							<input type="hidden" name="lat" value="{{ lat }}">
+							<input type="hidden" name="lng" value="{{ lng }}">
+							<label for="prox">Proximity within(km):</label>
+							<input class="form-control" name="proximity" id="prox" type="number" min="1"
+							value="{{ prox }}">
+							<label for="duration">Duration (months):</label>
+							<input class="form-control" name="duration" id="duration" type="number" min="1" max="12"
+							value="{{ duration }}">
+							<label for="price">price (<=):</label>
+								<input class="form-control" name="price" id="price" type="number" value="{{ price }}">
+								<button class="btn btn-secondary btn-sm mt-3" type="submit">Filter</button>
 							</div>
-							<br><br>
-							{% for p in place %}
-							<div class="card gallery" style="width: 12rem;cursor:pointer;" id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
-								<!-- {% load index %} -->
-								<img class="card-img-top" src="{{ cover|index:forloop.counter0 }}" alt="">
-								<div class="card-body" >
-									<h6 class="card-title">{{ p.title }}, For {{ p.duration }} months</h6>
-									<p class="card-title">{{ p.street_address }} </p>
-									<h6 class="card-title">{{ p.city }}, ${{ p.price}}</h6>
-									<h6 class="card-title">Created at: {{ p.pub_date_pretty }}</h6>
-									<br />
-								</div>
-								
-							</div>
-
-							{% endfor %}
+							</form>
 						</div>
-					</div>
-					<div class="col-5">
-						<div id="map" style="min-height: 100%; height: auto;"></div>
 					</div>
 				</div>
 			</div>
+			<div class="album py5 bg-light mt-3">
+				<div class="row">
+
+					<div class="row col-7">
+					{% for p in place %}						
+						<div class="col-sm-8 col-md-6 col-lg-4">
+							
+							<div class="card mt-3 ml-1" style="cursor:pointer;" id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
+								{% load index %}
+								<img class="card-img-top" src="{{ cover|index:forloop.counter0 }}" alt="">
+								<div class="card-body" >
+									<h6 class="card-title">{{ p.title }}, {{ p.duration }} months</h6>
+									<p class="card-title">{{ p.street_address }} </p>
+									<h6 class="card-title">{{ p.city }}, ${{ p.price}}/Month</h6>
+									<h6 class="card-title">Created at: {{ p.pub_date_pretty }}</h6>
+									<br />
+								</div>
+							</div>
+						</div>
+					{% endfor %}						
+					</div>
+					
+					
+					<div class="col-5 mt-3">
+						<div id="map" style="min-height: 100%; height: auto;"></div>
+					</div>
+				</div>
+				<br />
+			</div>
+			<br />
 		</div>
+		<br />
+		
+		
+		
+		
 		{% endblock %}
 		
 		{% block js %}
@@ -69,7 +83,7 @@
 				
 				let myOptions = {
 					center: new google.maps.LatLng({{ lat }}, {{ lng }}),
-					zoom: 13,
+					zoom: 14,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 					
 				};
@@ -118,5 +132,6 @@
 		</script>
 		
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWKqqOWg7D2pCCKgsGe_ISDMUyEkkxXzY&libraries=places&callback=init_searchmap"
+		async defer></script>		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWKqqOWg7D2pCCKgsGe_ISDMUyEkkxXzY&libraries=places&callback=init_searchmap"
 		async defer></script>
-	{% endblock %}	
+	{% endblock %}				
