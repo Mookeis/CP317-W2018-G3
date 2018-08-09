@@ -183,3 +183,27 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         return redirect('subby:index')
+# Celery
+def celery1(request):
+    return render(request,'users/account_home.html)
+    return returned_render
+
+def celery2(request):
+    return render(request,'users/index.html)
+    return returned_render
+
+def celery3(request):
+    return render(request,'users/login.html)
+    return returned_render
+                  
+def celery4(request):
+    return render(request,'users/show.html)
+    return returned_render
+
+def celery5(request):
+    return render(request,'users/signup.html)
+    return returned_render
+
+def celery6(request):
+    return render(request,'users/sublets.html)
+    return returned_render
