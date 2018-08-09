@@ -126,6 +126,13 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger'
 }
 
+# celery
+improt djcelery
+djcelery.setup_loader() #initialization 
+BROKER_URL='redis://:sunck@127.0.0.1:6379/0'
+CELERY_IMPORTS=('myApp.task')
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
