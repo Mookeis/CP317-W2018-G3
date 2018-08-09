@@ -95,7 +95,7 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
   * Users are also able to delete their listings at any time they desire.
 
 ## 2.7. Submit Reports
-* Users are able to issue reports concerning any violations of Subby's [Terms and Conditions Policy](https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Terms&Conditions.md)
+* Users are able to issue reports concerning any violations of Subby's [Terms and Conditions Policy](https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Terms&Conditions.md.html)
   * Reports will be reviewed by administrators and the appropriate penalties will be issued.
   * Penalties will depend on the severity of the violation and can range from deletion of the listing or temporary suspension to indefinite banning of the violating account.
 
