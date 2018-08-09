@@ -128,7 +128,7 @@ MESSAGE_TAGS = {
 # celery
 improt djcelery
 djcelery.setup_loader() #initialization 
-BROKER_URL='redis://:sunck@127.0.0.1:6379/0'
+BROKER_URL='redis://:postgres@127.0.0.1:8000/0'
 CELERY_IMPORTS=('subby.task')
 
 
