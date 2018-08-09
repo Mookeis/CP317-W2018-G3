@@ -129,7 +129,7 @@ MESSAGE_TAGS = {
 improt djcelery
 djcelery.setup_loader() #initialization 
 BROKER_URL='redis://:sunck@127.0.0.1:6379/0'
-CELERY_IMPORTS=('myApp.task')
+CELERY_IMPORTS=('subby.task')
 
 
 # Internationalization
