@@ -193,8 +193,9 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
        * review and respond to reports and flagged User listings and accounts
    * Below, Table A summarizes the aforementioned User Access Controls
 
-     **Table A**
     ![permissionsSummary](https://i.imgur.com/OisjZIs.png)
+
+    **Table A**
 
 
    * For more details on User functionalities and permissions, refer to **[Major Features](#2majorfeatures)**
@@ -214,7 +215,7 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
 
 
 ### 4.1.4. Control Flow
-*	Data will transmit between client and PostgreSQL database. Client interacts with the PostgreSQL database using [PHP Data Objects (PDO)](http://php.net/manual/en/book.pdo.php) API. It allows performing the common database operations in PHP such as creating new tables, inserting data, updating data, querying data, deleting data and so on. Once the connection is established successfully, client will directly send query to database and database will respond corresponding answers to client.
+*	Data transmitted from the client will be saved in a PostgreSQL database. The client interacts with the web server, which uses the `django.db` database adapter to perform common operations such as inserting, updating, and querying data. This database adapter will also allow for the creation of data migrations to create schemas and tables as necessary in development and production. The client will not have direct database access- all communication will be handled by the web server.
 
 
 ## 4.2 Project Deployment
@@ -230,13 +231,14 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
 
 # 6. Project Architecture
 ## 6.1. Class Diagram
-![DesignClassDiagram](https://i.imgur.com/li2CAi4.jpg)
+_Note that this large diagram is an overview to show the relationships between the classes. More detail on each class is provided below._
+![DesignClassDiagram](https://i.imgur.com/li2CAi4.jpg =1900x1491)
 
 ## 6.2. Package Details
 As discussed in the Analysis Phase, the system consists of five packages: User Package, Sublet Package, Rating Package, Favourite Package, and Report Package. Within each package diagram, we list the relevant entity objects and their corresponding methods. Additionally, each package diagram includes the control objects responsible for realizing the major use cases representing the interactions between external actors and the system.
 
 ## 6.2.1 User Package
-![UserPackage](https://i.imgur.com/0QpnLzZ.jpg)
+![UserPackage](https://i.imgur.com/IpKHU5d.jpg)
 
 ## 6.2.2 Sublet Package
 ![SubbySubletPackage](https://i.imgur.com/T55Cppm.jpg)
@@ -255,29 +257,33 @@ As discussed in the Analysis Phase, the system consists of five packages: User P
 
 
 # 8. Revision History
+## Version 2
+* **Section 6**
+    * Alex Kirsopp [6.2.1] [2018-08-09]
+
 ## Version 1.0
 * **Section 1**
-  * Sarah Younes [1.0 - 1.1] [2018-07-01]
-  * Sandra Sung [1.2 - 1.4] [2018-07-03]
+    * Sarah Younes [1.0 - 1.1] [2018-07-01]
+    * Sandra Sung [1.2 - 1.4] [2018-07-03]
 
 * **Section 2**
-  * Jingchi Chen [2.1 - 2.3] [2018-07-04]
-  * Ronald Lwin [2.1 - 2.7] [2018-07-14]
+    * Jingchi Chen [2.1 - 2.3] [2018-07-04]
+    * Ronald Lwin [2.1 - 2.7] [2018-07-14]
 
 * **Section 3**
-  * Sandra Sung [3.1 - 3.5] [2018-07-03]
+    * Sandra Sung [3.1 - 3.5] [2018-07-03]
 
 * **Section 4**
-  *  Alex Kirsopp [4.1] [2018-06-20]
-  *  Sarah Younes [4.1.2 - 4.1.4] [2018-07-02]
+    *  Alex Kirsopp [4.1] [2018-06-20]
+    *  Sarah Younes [4.1.2 - 4.1.4] [2018-07-02]
 
 * **Section 5**
-  *  Ronald Lwin [5.1] [2018-07-17]
+    *  Ronald Lwin [5.1] [2018-07-17]
 
 * **Section 6**
-  *  Alex Kirsopp [6.2.1] [2018-06-27]
-  *  Xiaochao Luo [6.2.5] [2018-07-01]
-  * Sarah Younes [6.1] [2018-07-02]
+    *  Alex Kirsopp [6.2.1] [2018-06-27]
+    *  Xiaochao Luo [6.2.5] [2018-07-01]
+    *  Sarah Younes [6.1] [2018-07-02]
 
 * **Other**
     * Alex Kirsopp - Layout, initial outline, markdown, etc
