@@ -75,7 +75,7 @@ The scope of Subby is driven by the need for a "one-stop shop" for Waterloo subl
   * Users can also add filters to their listing, enabling their listing to be included in more refined searches.
 
 ## 2.3. Contact Sublet Owners
-* Users can contact sublet owners through the Subby platform.
+* Users can contact sublet owners through the Subby platform's "Contact Sublessor?".
   * An e-mail will be sent to the sublet owner's registered e-mail address and will include the attached message and the e-mail address with which the user registered.
   * The sublet owner will then be able to contact the user directly.
 
