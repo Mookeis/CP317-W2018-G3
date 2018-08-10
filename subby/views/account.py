@@ -39,6 +39,17 @@ def account_home(request):
 	return render(request, 'users/account_home.html', user_dict)
 
 def update_user_info(request):
+	"""
+	---------------------
+	updating users' information.
+	Use: render = update_user_info(request)
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		render - render object
+	---------------------
+	"""
 	if request.method == 'POST':
 		if request.POST['email'] != request.user.email:
 			try:
