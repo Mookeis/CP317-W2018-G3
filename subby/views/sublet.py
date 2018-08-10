@@ -44,11 +44,13 @@ class SubletDetail(DetailView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         lister = User.objects.get(id=self.object.user_id)
-        fav = Favourite.objects.filter(sublet=self.object, user=self.request.user)
-        if len(fav) > 0:
-            fav = True
-        else:
-            fav = False
+        fav = False
+        if self.request.user.is_authenticated:
+            fav = Favourite.objects.filter(sublet=self.object, user=self.request.user)
+            if len(fav) > 0:
+                fav = True
+            else:
+                fav = False
         user = self.request.user.id
         ctx['fav'] = fav
         ctx['lister'] = lister
@@ -68,10 +70,11 @@ def search(request):
     if request.method == 'POST':
         if request.POST['lat'] and request.POST['lng'] and request.POST['proximity']:
             places = Sublet.objects.nearby(request.POST['lat'], request.POST['lng'], request.POST['proximity'])
+
             data = {'place': places, 'lat': request.POST['lat'],
                     'lng': request.POST['lng'],
-                    'prox': request.POST['proximity'],
-                    'address':request.POST['search_address']}
+                    'prox': request.POST['proximity']}
+                    #'address':request.POST['search_address']}
             if request.POST.get('duration'):
                 places = places.filter(duration=request.POST.get('duration'))
                 data.update(place=places)
@@ -201,11 +204,11 @@ def my_sublets(request):
         'image_list': image_list,
     }
     return render(request, 'sublet/my_sublets.html', posting_dict)
-	
+
 @message_login_required
 def delete_sublet(request, sublet_id):
 	title = Sublet.objects.get(id=sublet_id).title
 	Sublet.objects.delete_sublet(sublet_id)
-	
+
 	messages.add_message(request, messages.INFO, "Sublet \""+title+'\" is deleted')
 	return redirect('subby:my_sublets')

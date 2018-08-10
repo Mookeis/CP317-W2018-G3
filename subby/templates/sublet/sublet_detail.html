@@ -27,8 +27,9 @@
 				<div class="col">
 					<div class="row d-flex flex-column">
 						<h4>{{ object.title }}</h4>
-						<h6 class="d-block">Monthly Rent: ${{ object.price }} <a class="btn btn-secondary btn-sm float-right mr-3"
-						href="{% url 'subby:RatingList' user_id=lister.id %}">View Reviews</a></h6>
+            {% if request.user.is_authenticated %}
+              <h6 class="d-block">Monthly Rent: ${{ object.price }} <a class="btn btn-secondary btn-sm float-right mr-3" href="{% url 'subby:RatingList' user_id=lister.id %}">View Reviews</a></h6>
+            {% endif %}
 					</div>
 					<div class="row">
 						<div id="imageCarousel" class="carousel slide" data-ride="carousel">
@@ -76,6 +77,7 @@
 						</div>
 					</div>
 					<div class="row d-flex flex-row">
+            {% if request.user.is_authenticated %}
 						<div class="col">
 							<button class="btn btn-secondary" type="button"
 							data-toggle="modal" data-target="#report-modal"
@@ -83,6 +85,7 @@
 							aria-label="Toggle navigation">Report User
 							</button>
 						</div>
+            {% endif %}
 					</div>
 				</div>
 				<div class="col offset-md-1">
@@ -133,17 +136,17 @@
 								<div class="modal-header">
 									<div>
 										<h4 class="text-white">Delete the sublet?</h4>
-										
+
 									</div>
 								</div>
 								<form method="POST" action="{% url 'subby:delete_sublet' sublet_id=object.id%}">
 									{% csrf_token %}
-									
+
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-										
+
 										<button type="submit" class="btn btn-primary" id="submit_button">Yes</button>
-										
+
 									</div>
 								</form>
 							</div>
@@ -218,11 +221,11 @@
 									<label class="mt-2" for="image-list">Previews:</label>
 									<output class="form-control" id="image-list"
 									style="min-height: 100px; height: auto;"></output>
-									
+
 									<input type="hidden" class="form-control" name="lat" id="lat"
 									aria-describedby="Latitude" placeholder="Enter Latitude"
 									value="{{ object.latitude }}">
-									
+
 									<input type="hidden" class="form-control" name="lng" id="lng"
 									aria-describedby="Longitude" placeholder="Enter Longitude"
 									value="{{ object.longitude }}">
@@ -242,6 +245,7 @@
 					aria-label="Toggle navigation">Contact Subletter?
 					</button>
 					<br/><br/>
+          {% if request.user.is_authenticated %}
 					<form action="{% url 'subby:fav_unfav_sublet' %}" method="POST">
 						{% csrf_token %}
 						<input type="hidden" name="subletid" value="{{ object.id }}">
@@ -252,7 +256,8 @@
 						<button class="btn btn-secondary" type="submit">Favorite</button>
 						{% endif %}
 					</form>
-					
+          {% endif %}
+
 					<div class="collapse" id="contactToggler">
 						<div class="bg-dark p-4 mt-2" style="border-radius: 5px;">
 							<h4 class="text-white">Contact information</h4>
@@ -296,7 +301,7 @@
 						</div>
 					</div>
 					{% endif %}
-					
+
 				</div>
 			</div>
 		</div>
@@ -318,7 +323,7 @@ aria-hidden="true">
 			<form method="POST" action="{% url 'subby:create_report' user_id=lister.id  sublet_id=object.id %}">
 				{% csrf_token %}
 				<div class="modal-body text-light">
-					
+
 					<input type="hidden" name="reviewedid" value="{{ lister.id }}">
 					<h3 id="radio-header" data-toggle="popover" data-content="Please select an option">Issues:</h3>
 					<div class="form-group">
@@ -340,15 +345,15 @@ aria-hidden="true">
 						</div>
 					</div>
 					<h4 class="mb-2">Description:</h4>
-					
+
 					<textarea class="form-control" id="report-message" name="description"
 					placeholder="Please provide detailed description about your report"
 					rows="8" data-toggle="popover" data-content="Please enter a message"></textarea>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						
+
 						<button type="submit" class="btn btn-primary" id="report-submit-button">Submit</button>
-						
+
 					</div>
 				</form>
 			</div>
@@ -360,7 +365,7 @@ aria-hidden="true">
 {% block js %}
 <script>
 	// Initialize and add the map
-	
+
 	function initMap() {
 		let latitude = {{ object.latitude }};
 		let longitude = {{ object.longitude }};
@@ -371,11 +376,11 @@ aria-hidden="true">
 		document.getElementById('detailmap'), {
 			zoom: 16, center: street_address,
 			scrollwheel: false,
-			
+
 		});
 		// The marker, positioned at Uluru
 		let marker = new google.maps.Marker({position: street_address, map: map});
-		
+
 		init_map()
 	}
 </script>

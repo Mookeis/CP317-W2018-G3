@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col mt-2">
                                 {% load index %}
-                                <h5>Report for {{ r.user.email }}</h5>
+                                <h5>Report for {{ r.user.email }} -- <a href="{% url 'subby:user_show' r.user.id %}">View Profile</a></h5>
                                 <p>Reason: {{ r.ISSUES|index:r.issue|index:1 }}</p>
                                 <hr class="border-light">
                             </div>

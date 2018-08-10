@@ -14,7 +14,7 @@ User = get_user_model()
 
 def __ensure_admin(func):
     def wrapper(req, *args, **kwargs):
-        if req.user.is_admin != True:
+        if req.user.is_authenticated == False or req.user.is_admin != True:
             messages.error(req, 'You are not authorized to access that page')
             return redirect('subby:index')
         else:
