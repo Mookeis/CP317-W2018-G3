@@ -15,6 +15,18 @@ from subby.decorators.loginrequiredmessage import message_login_required
 	
 @message_login_required
 def FavouriteLister(request, user_id):
+	"""
+	---------------------
+	creating favorite list of user .
+	Use: render = FavouriteLister(request, user_id)
+	---------------------
+	Parameters:
+		request - request object
+		user_id - login number(integer)
+	Return:
+		render - render object
+	---------------------
+	"""
 	fav_list = Favourite.objects.filter(user=request.user)
 	
 	image_dict = {}
@@ -35,6 +47,17 @@ def FavouriteLister(request, user_id):
 
 class FavouriteMenuBar(ListView):
     def index(request):
+	"""
+	---------------------
+	creating particular index.
+	Use:render=index(request)
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		render - render object
+	---------------------
+	"""
         all_favourites = Favourite.objects.all()
         ctx = {'all_favourites': all_favourites}
 
@@ -43,7 +66,17 @@ class FavouriteMenuBar(ListView):
 
 # Favourites a sublet if not favourited, unfavourites a sublet if already favourited (deletes it from db)
 def fav_unfav_sublet(request):
-
+	"""
+	---------------------
+	Implementing favorite and unfavorite function .
+	Use: redirect = fav_unfav_sublet(request)
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		render - render object
+	---------------------
+	"""
     current_user = request.user
     next = request.POST.get('next', '/')
     # Check if sublet exists
