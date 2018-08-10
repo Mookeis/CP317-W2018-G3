@@ -12,6 +12,18 @@ User = get_user_model()
 
 
 def list_user_rating(request, user_id):
+	"""
+	---------------------
+	creating rating list of users .
+	Use: render = list_user_rating(request, user_id)
+	---------------------
+	Parameters:
+		request - request object
+		user_id - login number(integer)
+	Return:
+		render - render object
+	---------------------
+	"""
 	ratings = Rating.objects.filter(reviewed_user_id=user_id)
 	lister = User.objects.get(id=user_id)
 	raters = []
@@ -58,6 +70,17 @@ def list_user_rating(request, user_id):
 
 @message_login_required
 def write_review(request):
+	"""
+	---------------------
+	creating writing review function .
+	Use: redirect('subby:RatingList', request.POST['reviewedid'])
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		redirect('subby:RatingList', request.POST['reviewedid'])
+	---------------------
+	"""
     if request.method == 'POST':
         current = request.user.email
         if request.POST['rating'] and request.POST['comment']:
@@ -70,6 +93,17 @@ def write_review(request):
 		
 @login_required(login_url="/signup/")	
 def update_review(request):
+	"""
+	---------------------
+	updating review .
+	Use: redirect(reverse('subby:RatingList', kwargs={'user_id':rating.reviewed_user_id}))
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		redirect(reverse('subby:RatingList', kwargs={'user_id':rating.reviewed_user_id}))
+	---------------------
+	"""
     if request.method == 'POST':
         if request.user.is_anonymous:
             current = None
@@ -92,6 +126,18 @@ def update_review(request):
 
 @login_required(login_url="/signup/")
 def my_review(request, pk):
+	"""
+	---------------------
+	check comments .
+	
+	---------------------
+	Parameters:
+		request - request object
+		pk - object
+	Return:
+		render
+	---------------------
+	"""
 	rating = Rating.objects.filter(reviewed_user_id=pk, user_id=request.user.id)
 	print(rating[0].rating)
 	return render(request, 'rating/rating_detail.html', {'rating': rating[0], 'lister': request.user})
@@ -99,6 +145,19 @@ def my_review(request, pk):
 	
 @login_required(login_url="/signup/")
 def delete_review(request, rating_id, reviewed_user_id):
+	"""
+	---------------------
+	deleting review .
+	Use: Rating.objects.filter(id=rating_id).delete()
+	---------------------
+	Parameters:
+		request - request object
+		rating_id - id object
+		reviewed_user_id - integer
+	Return:
+		Rating.objects.filter(id=rating_id).delete()
+	---------------------
+	"""
 	Rating.objects.filter(id=rating_id).delete()
 	
 	return redirect('subby:RatingList', user_id=reviewed_user_id)
