@@ -25,7 +25,18 @@ def __ensure_admin(func):
 # GET /users
 @__ensure_admin
 def index(req):
-    query = req.GET.get('query', None)
+    """
+	---------------------
+	creating index.
+	Use: render = index(req)
+	---------------------
+	Parameters:
+		req - request object
+	Return:
+		render - render object
+	---------------------
+	"""
+	query = req.GET.get('query', None)
 
     if query == None:
         users = User.objects.filter(is_admin = False)
@@ -42,10 +53,32 @@ def index(req):
 # GET /users/:user_id
 @__ensure_admin
 def show(req, user_id):
+	"""
+	---------------------
+	showing sublet.
+	Use: render = show(req,user_id)
+	---------------------
+	Parameters:
+		request - request object
+		user_id - integer
+	Return:
+		render - render object
+	---------------------
+	"""
     context = { 'user': get_object_or_404(User, pk = user_id) }
     return render(req, 'users/show.html', context)
 
 def contact_user(request):
+	"""
+	---------------------
+	Add function of contacting user.
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		contact user
+	---------------------
+	"""
 	if request.method == 'POST':
 		recaptcha_response = request.POST.get('grecaptcha-token')
 		data = {
@@ -75,6 +108,17 @@ def contact_user(request):
 
 
 def signup(request):
+	"""
+	---------------------
+	Creating the sign up function
+	Use: render = signup(request)
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		render - render object
+	---------------------
+	"""
 	if request.method == 'POST':
 		recaptcha_response = request.POST.get('recaptcha-token')
 		data = {
@@ -113,6 +157,17 @@ def signup(request):
 
 
 def login(request):
+	"""
+	---------------------
+	Implementing the login function.
+	Use: render = login(request)
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		render - render object
+	---------------------
+	"""
 	if request.method == 'POST':
 		user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None:
@@ -126,6 +181,17 @@ def login(request):
 
 # POST /logout
 def logout(request):
+	"""
+	---------------------
+	Implementing the logout function.
+	Use: render = logout(request)
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		render - render object
+	---------------------
+	"""
   if request.method == 'POST':
     auth.logout(request)
     return redirect('subby:index')
