@@ -17,6 +17,16 @@ class SubletList(ListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
+	"""
+	---------------------
+	get context.
+	---------------------
+	Parameters:
+		**kwargs
+	Return:
+		ctx 
+	---------------------
+	"""
         ctx = super().get_context_data(**kwargs)
         images = SubletImage.objects.all()
         image_list = []
@@ -46,6 +56,16 @@ class SubletDetail(DetailView):
     model = Sublet
 
     def get_context_data(self, **kwargs):
+	"""
+	---------------------
+	get context.
+	---------------------
+	Parameters:
+		**kwargs
+	Return:
+		ctx 
+	---------------------
+	"""
         ctx = super().get_context_data(**kwargs)
         lister = User.objects.get(id=self.object.user_id)
         fav = Favourite.objects.filter(sublet=self.object, user=self.request.user)
@@ -69,6 +89,16 @@ class SubletDetail(DetailView):
 
 
 def search(request):
+	"""
+	---------------------
+	search function.
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		render - render object
+	---------------------
+	"""
     if request.method == 'POST':
         if request.POST['lat'] and request.POST['lng'] and request.POST['proximity']:
             places = Sublet.objects.nearby(request.POST['lat'], request.POST['lng'], request.POST['proximity'])
@@ -89,6 +119,16 @@ def search(request):
 
 @message_login_required
 def create_sublet(request):
+	"""
+	---------------------
+	creating and post a sublet
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		render - render object 
+	---------------------
+	"""
     if request.method == 'POST':
         if request.POST['title'] and request.POST['street_address'] and request.POST['city'] and request.POST[
             'postal_code'] and request.POST['price'] and request.POST['description'] and request.POST['lat'] and \
@@ -116,6 +156,16 @@ def create_sublet(request):
         return render(request, 'sublet/create_sublet.html')
 
 def update_sublet(request):
+	"""
+	---------------------
+	creating and post a sublet
+	---------------------
+	Parameters:
+		request - request object
+	Return:
+		update the information of sublet 
+	---------------------
+	"""
     if request.method == 'POST':
         sublet = Sublet.objects.get(id=request.POST['subletid'])
         if request.POST['title'] != sublet.get_sublet_title():

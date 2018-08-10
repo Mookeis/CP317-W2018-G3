@@ -10,7 +10,18 @@ User = get_user_model()
 
 @message_login_required
 def create_report(request, user_id, sublet_id):
-	
+	"""
+	---------------------
+	creating report.
+	---------------------
+	Parameters:
+		request - request object
+		user_id - integer
+		sublet_id - integer
+	Return:
+		render - render object
+	---------------------
+	"""
 	if request.method == 'POST':
 		if request.POST.get('issue', None) and request.POST['description']:
 			user = User.objects.get(id=user_id)
