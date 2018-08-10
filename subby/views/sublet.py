@@ -70,7 +70,8 @@ def search(request):
             places = Sublet.objects.nearby(request.POST['lat'], request.POST['lng'], request.POST['proximity'])
             data = {'place': places, 'lat': request.POST['lat'],
                     'lng': request.POST['lng'],
-                    'prox': request.POST['proximity']}
+                    'prox': request.POST['proximity'],
+                    'address':request.POST['search_address']}
             if request.POST.get('duration'):
                 places = places.filter(duration=request.POST.get('duration'))
                 data.update(place=places)

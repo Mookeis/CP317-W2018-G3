@@ -1,5 +1,24 @@
 {% extends 'application/base.html' %}
 
+
+{% block search_bar %}
+<div class="nav-item col-md-6">
+	<form action="{% url 'subby:search' %}" method="POST">
+		{% csrf_token %}
+		<div class="input-group">
+			<input class="form-control" type="search" placeholder="Search" aria-label="Search"
+			id="sublet-search" name="search_address">
+			<input type="hidden" id="search-lat" name="lat">
+			<input type="hidden" id="search-lng" name="lng">
+			<input type="hidden" id="search-prox" name="proximity" value="5">
+			<span class="input-group-btn">
+				<button class="btn btn-secondary search-btn ml-3" type="submit">Search</button>
+			</span>
+		</div>
+	</form>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="jumbotron jumbo-container">
 	<!-- <div class="container-fluid search-sublet-main-container"> -->
@@ -8,8 +27,9 @@
 			
 			<!-- <div class="container-fluid search-container"> -->
 			<h2>
-				Search Results: {{ place.count }} results found
+				Search Results: {{ place.count }} results found For 
 			</h2>
+			<h4> {{ address }} </h4>
 			<button type="button" data-toggle="collapse" data-target="#filterToggler"
 			class="btn btn-secondary btn-sm" aria-controls="filterToggler" aria-expanded="false"
 			aria-label="Toggle navigation">
@@ -41,9 +61,9 @@
 			</div>
 			<div class="album py5 bg-light mt-3">
 				<div class="row">
-
+					
 					<div class="row col-7">
-					{% for p in place %}						
+						{% for p in place %}						
 						<div class="col-sm-8 col-md-6 col-lg-4">
 							
 							<div class="card mt-3 ml-1" style="cursor:pointer;" id="sublet{{ p.id }}" onclick="window.location='{% url 'subby:SubletDetail' p.id %}';">
@@ -58,7 +78,7 @@
 								</div>
 							</div>
 						</div>
-					{% endfor %}						
+						{% endfor %}						
 					</div>
 					
 					
@@ -132,5 +152,6 @@
 		</script>
 		
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWKqqOWg7D2pCCKgsGe_ISDMUyEkkxXzY&libraries=places&callback=init_searchmap"
-		async defer></script>	
-	{% endblock %}				
+		async defer></script>
+		
+	{% endblock %}					

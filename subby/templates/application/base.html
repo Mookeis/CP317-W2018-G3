@@ -31,24 +31,11 @@
     </div>
 
 
-
+	{% block search_bar %}
     {% if request.get_full_path == "/sublets/search" %}
-        <div class="nav-item col-md-6">
-            <form action="{% url 'subby:search' %}" method="POST">
-                {% csrf_token %}
-                <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                           id="sublet-search">
-                    <input type="hidden" id="search-lat" name="lat">
-                    <input type="hidden" id="search-lng" name="lng">
-                    <input type="hidden" id="search-prox" name="proximity" value="5">
-                    <span class="input-group-btn">
-                    <button class="btn btn-secondary search-btn ml-3" type="submit">Search</button>
-                </span>
-                </div>
-            </form>
-        </div>
+
     {% endif %}
+	{% endblock %}
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
@@ -107,7 +94,7 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                               id="sublet-search">
+                               id="sublet-search" name="search_address">
                         <input type="hidden" id="search-lat" name="lat">
                         <input type="hidden" id="search-lng" name="lng">
                         <input type="hidden" id="search-prox" name="proximity" value="5">
