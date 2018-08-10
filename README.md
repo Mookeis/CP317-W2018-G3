@@ -29,7 +29,7 @@
   * The project will be running at https://cp317-w2018-g3.herokuapp.com/ for a period of time after the submission date. Note that latent errors still listed in the SQA documentation, such as image uploading, will still be present.
  
 #### Testing
-  * Run tests (without coverage): `python run manage.py test --settings=subby_project.settings.development`
+  * Run tests (without coverage): `python manage.py test --settings=subby_project.settings.development`
   * Run tests (with coverage): `coverage run manage.py test --settings=subby_project.settings.development`
   * Generate coverage document: `coverage html`
   * View coverage document at: `... /CP317-W2018-G3/htmlcov/index.html`
