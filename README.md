@@ -11,7 +11,8 @@
   * Analysis SQA: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/SQA-Design.html
   * Github IDs: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Github-IDs.html
   * Subgroup Assignments: https://rawgit.com/Kuresov/CP317-W2018-G3/master/documents/Subgroup-Assignments.html
-    * _Notes in documentation are more accurate_
+    * _Notes on work performed in documentation is generally more accurate_
+  * Code Coverage Report: https://rawgit.com/Kuresov/CP317-W2018-G3/master/htmlcov/index.html
 
 ### Developer Notes
 #### Running Subby (Development)
@@ -27,7 +28,7 @@
 
 #### Production
   * The project will be running at https://cp317-w2018-g3.herokuapp.com/ for a period of time after the submission date. Note that latent errors still listed in the SQA documentation, such as image uploading, will still be present.
- 
+
 #### Testing
   * Run tests (without coverage): `python manage.py test --settings=subby_project.settings.development`
   * Run tests (with coverage): `coverage run manage.py test --settings=subby_project.settings.development`
